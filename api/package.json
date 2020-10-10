@@ -1,0 +1,32 @@
+{
+  "name": "mdnanft",
+  "version": "0.0.1",
+  "description": "node ts",
+  "main": "dist/server.js",
+  "scripts": {
+    "start": "tsc && node dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BradMcFall/MDNANFT.git"
+  },
+  "keywords": [
+    "avalanche"
+  ],
+  "author": "https://devpost.com/software/nft-trading-application-for-dna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BradMcFall/MDNANFT/issues"
+  },
+  "homepage": "https://github.com/BradMcFall/MDNANFT#readme",
+  "dependencies": {
+    "avalanche": "^3.0.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "tslint": "^5.20.1",
+    "typescript": "^3.9.7"
+  }
+}
