@@ -2,5 +2,5 @@
 
 ## start dev
 ```
-npm start
+npm run start
 ```

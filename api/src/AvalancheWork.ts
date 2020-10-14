@@ -6,6 +6,6 @@ export class AvalancheWork {
         let xchain = avalanche.XChain();
         let myKeychain = xchain.keyChain();
         let newAddress = myKeychain.makeKey();
-        console.log('newAddress: ' + JSON.stringify(newAddress));
+        //console.log('newAddress: ' + JSON.stringify(newAddress));
     }
 }
