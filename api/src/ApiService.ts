@@ -1,15 +1,4 @@
-import axios, {AxiosResponse} from 'axios';
-
-/*
-admin
-auth
-avm
-health
-info
-keystore
-metrics
-platformvm
-*/
+import axios from 'axios';
 
 export class ApiService{
 
@@ -26,7 +15,7 @@ export class ApiService{
         this.port = "9650"
     }
 
-    test(endPoint:string,method:string,params:any){
+    getData(endPoint:string,method:string,params:any){
 
         let url = 'http://' +
             this.avalancheNodeUrl + ':' +
