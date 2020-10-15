@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { getTest } from '../service/test'
+import { getApi } from '@/service/api'
 export default {
   name: 'Home',
   components: {},
@@ -13,14 +13,20 @@ export default {
     }
   },
   methods: {
-    getTest() {
-      getTest().then(response => {
-        console.log(response)
+    api() {
+      getApi(
+          '/ext/health',
+          'health.getLiveness',
+          []
+      ).then(res => {
+        console.log('api: Health');
+        console.log('method: health.getLiveness');
+        console.log(JSON.stringify(res));
       })
     }
   },
   mounted () {
-    this.getTest();
+    this.api();
   }
 }
 </script>
