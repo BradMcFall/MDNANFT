@@ -1,18 +1,16 @@
 <template>
-  <div id="app">
-    <Home />
+  <div class="App">
+    <HomeComponent/>
   </div>
 </template>
 
 <script>
-import Home from './components/Home.vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import HomeComponent from './components/HomeComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    Home
+    HomeComponent
   }
 }
 </script>
