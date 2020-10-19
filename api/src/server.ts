@@ -6,10 +6,6 @@ import {ApiService} from "./ApiService";
 const app = express();
 const port = 3000;
 
-//Brad
-//const blockchainId = "2JVSBoinj9C2J33VntvzYtVJNZdN2NKiwwKjcumHUWEb5DbBrm";
-//const blockchainIp = "localhost";
-
 //environment variables
 const blockchainId = process.env.DEV_BLOCKCHAIN_ID;
 const blockchainIp = process.env.DEV_AVALANCHE_IP;
@@ -30,6 +26,8 @@ app.post('/api/data', (req, res) => {
     API.getData(endPoint,method,params)
         .then((r)=>{
         res.json(r.data);
+    }).catch((err)=>{
+        console.log('error: ' + err);
     })
 });
 
