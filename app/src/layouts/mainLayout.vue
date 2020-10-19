@@ -1,25 +1,25 @@
 <template>
   <div>
-    <HeaderComponent/>
+    <Header/>
   <main class="main">
     <slot/>
   </main>
-    <FooterComponent/>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import {getApi} from "@/service/api";
-import HeaderComponent from "@/components/HeaderComponent"
-import FooterComponent from "@/components/FooterComponent"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
 
 export default {
   components: {
-    HeaderComponent,
-    FooterComponent
+    Header,
+    Footer
   },
   mounted(){
-    this.test();
+    //this.test();
   },
   methods: {
     test() {
@@ -49,11 +49,13 @@ html,body {
   font: 12px Arial, sans-serif;
   overflow:auto;
 }
+article{
+  padding:2%;
+}
 .main {
-  position: relative;
-  min-height: 100vh;
-  width:100%;
-  background-color:#CCC;
+  height: 60vh;
+  display: grid;
+  font-size: 18px;
 }
 a:active,
 a:hover,
@@ -62,9 +64,16 @@ a:link {
   text-decoration: none;
   color: black;
 }
-ul {
-  padding: 0;
+h1 {
   margin: 0;
+  padding-bottom: 12px;
+  font-size: 12px;
+}
+input,
+button {
+  padding: 9px;
+  font-size: 12px;
+  margin-bottom: 9px;
 }
 li {
   display: inline-block;

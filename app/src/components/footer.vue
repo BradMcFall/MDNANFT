@@ -5,7 +5,7 @@
 .footer {
   position: relative;
   bottom:0;
-  height:10rem;
+  height:18rem;
   width: 100%;
   background-color: #999;
   text-align:center;

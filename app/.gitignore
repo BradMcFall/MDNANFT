@@ -1,9 +1,12 @@
 .DS_Store
 node_modules
+/dist
+.netlify
 
 # local env files
 .env.local
 .env.*.local
+.env.bat
 
 # Log files
 npm-debug.log*
