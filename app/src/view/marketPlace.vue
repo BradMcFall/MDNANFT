@@ -17,17 +17,8 @@ export default {
       test: []
     }
   },
-  methods: {
-    checkMagic(){
-      // let auth = this.$store.state.magicLoggedInStatus;
-      // if(!auth){
-      //   window.location.href = '/login';
-      // }
-    }
-  },
-  beforeMount () {
-    this.checkMagic();
-  }
+  methods: {},
+  beforeMount () {}
 }
 </script>
 

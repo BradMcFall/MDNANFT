@@ -4,6 +4,7 @@ node_modules
 .netlify
 
 # local env files
+.env
 .env.local
 .env.*.local
 .env.bat
