@@ -19,7 +19,7 @@ export default {
     Footer
   },
   mounted(){
-    //this.test();
+    this.test();
   },
   methods: {
     test() {
