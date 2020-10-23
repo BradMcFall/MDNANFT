@@ -26,6 +26,7 @@ export default {
   data: function () {
     return {
       loaded: 'Loading...',
+      protectedURL:'/dash',
       m:{},
       loginStatus:false
     }
@@ -41,7 +42,7 @@ export default {
           if (isLoggedIn) {
             this.$store.state.magicLoggedInStatus = true;
             this.$store.state.loginEmail = email;
-            await this.$router.push('/buyandsell')
+            await this.$router.push(this.protectedURL)
           }
         }
       }
@@ -55,7 +56,7 @@ export default {
             this.login();
           })
         }else{
-          this.$router.push('/buyandsell')
+          this.$router.push(this.protectedURL)
         }
       })
     },
@@ -73,8 +74,7 @@ export default {
 
 <style>
 #magicApp {
-  align-self: center;
-  justify-self: center;
+  margin: 20px auto 0;
   background-color: #eee;
   text-align: center;
   width: 300px;

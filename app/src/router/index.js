@@ -1,54 +1,113 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-//import NotFound from '@/components/pageNotFound'
+import NotFound from '@/components/pageNotFound'
 import Home  from '@/view/home'
+import Dash from '@/view/dash'
+import Buy from '@/view/dash/buy'
+import Sell from '@/view/dash/sell'
+import MarketPlace from '@/view/dash/marketPlace'
+import DashHome from '@/view/dash/home'
 import Login from '@/components/magic/login'
 import Logout from '@/components/magic/logout'
-import BuyAndSell from '@/view/buyAndSell'
-import Marketplace from '@/view/marketPlace'
 
 Vue.use(VueRouter);
 import {store} from '@/store'
+import {getMagic, loginStatus} from "@/auth/magic/magic";
+
+
+const noAuth = (to,from,next) => {
+    if(!store.state.magicLoggedInStatus){
+        magic(m).then((status) => {
+            if (status) {
+                m.user.getMetadata().then((data) => {
+                    setStore(data.email,true)
+                }).catch((err)=>{
+                    console.log('magic: ' + err );
+                })
+            }
+        })
+        next();
+    }
+}
+
+const auth = (to,from,next) => {
+    if(!store.state.magicLoggedInStatus){
+        magic(m).then((status) => {
+            if (status) {
+                m.user.getMetadata().then((data) => {
+                    setStore(data.email,true)
+                }).catch((err)=>{
+                    console.log('magic: ' + err );
+                })
+                next();
+            }else{
+                next('/login');
+            }
+        })
+    }else{
+       next();
+    }
+}
+
+
+const m = getMagic();
+const setStore = (email,status) => {
+    store.state.loginEmail = email;
+    store.state.magicLoggedInStatus = status;
+}
+const magic = (m) => {
+    return loginStatus(m)
+}
+
+
 
 const routes = [
     {
+        path: '*',
+        name: '404',
+        component: NotFound,
+        beforeEnter:noAuth
+    },
+    {
         path: '/',
         name: 'home',
-        component: Home
+        component: Home,
+        beforeEnter:noAuth
     },
     {
         path: '/login',
         name: 'login',
-        component: Login
+        component: Login,
+        beforeEnter:noAuth
     },
     {
         path: '/logout',
         name: 'logout',
-        component: Logout
+        component: Logout,
+        beforeEnter:noAuth
     },
     {
-        path: '/marketplace',
-        name: 'marketplace',
-        component: Marketplace,
-        beforeEnter: (to, from, next) => {
-            if (store.state.magicLoggedInStatus) {
-                next();
-                return
+        path: '/dash',
+        children: [
+            {
+                path: '/',
+                component: DashHome,
+            },
+            {
+                path: 'buy',
+                component: Buy,
+            },
+            {
+                path: 'sell',
+                component: Sell,
+            },
+            {
+                path: 'marketplace',
+                component: MarketPlace,
             }
-            next('/login')
-        }
-    },
-    {
-        path: '/buyandsell',
-        name: 'buyandsell',
-        component: BuyAndSell,
-        beforeEnter: (to, from, next) => {
-            if (store.state.magicLoggedInStatus) {
-                next();
-                return
-            }
-            next('/login')
-        }
+            ],
+        component: Dash,
+        beforeEnter:auth
     }
 ]
 

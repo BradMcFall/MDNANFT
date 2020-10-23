@@ -3,8 +3,7 @@
     <h1>MDNANFT</h1>
     <nav>
       <ul>
-        <li><router-link to="/">home</router-link></li>
-        <li><router-link to="/dash">dash</router-link></li>
+        <li><a href="/">home</a></li>
       </ul>
     </nav>
     <span v-if="this.$store.state.magicLoggedInStatus">
@@ -14,13 +13,16 @@
 </template>
 
 <script>
+
 import {getMagic,loginStatus,logout} from "@/auth/magic/magic";
+
 export default {
-  name: 'Home',
+  name: 'DashHome',
   m:{},
   components: {},
   data: function(){
     return {
+
     }
   },
   methods: {
@@ -33,13 +35,14 @@ export default {
       if(!this.$store.state.magicLoggedInStatus) {
         this.m = getMagic();
         loginStatus(this.m).then((status) => {
-          this.$store.state.magicLoggedInStatus = !!status;
+          if(!status){
+            this.$router.push('/login')
+          }
         })
       }
     }
   },
   beforeMount() {
-    this.magic();
   }
 }
 </script>
