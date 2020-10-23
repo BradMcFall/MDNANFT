@@ -1,9 +1,6 @@
 <template>
   <MainLayout>
-    <article>
-      <h2>DNA NFT</h2>
-      <p>etc ...</p>
-    </article>
+    <div class="content">Welcome</div>
   </MainLayout>
 </template>
 <script>

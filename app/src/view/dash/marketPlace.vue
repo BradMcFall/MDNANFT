@@ -1,16 +1,14 @@
 <template>
-  <MainLayout>
-    <div class="login_container">
-      <span>Marketplace</span>
-    </div>
-  </MainLayout>
+  <DashLayout>
+      <div class="content">Marketplace</div>
+  </DashLayout>
 </template>
 <script>
-import MainLayout from "@/layouts/mainLayout";
+import DashLayout from "@/layouts/dashLayout";
 export default {
   name: 'Marketplace',
   components: {
-    MainLayout
+    DashLayout
   },
   data() {
     return {
