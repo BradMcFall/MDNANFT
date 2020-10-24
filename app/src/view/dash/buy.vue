@@ -1,6 +1,6 @@
 <template>
   <DashLayout>
-    <div class="buy">buy</div>
+    <div class="content">buy</div>
   </DashLayout>
 </template>
 <script>

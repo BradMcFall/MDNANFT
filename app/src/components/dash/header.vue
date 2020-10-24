@@ -6,20 +6,21 @@
         <li><a href="/">home</a></li>
       </ul>
     </nav>
-    <span v-if="this.$store.state.magicLoggedInStatus">
-      {{this.$store.state.loginEmail}} | <a href="/logout">logout</a>
-    </span>
+    <EmailDisplay />
   </header>
 </template>
 
 <script>
 
 import {getMagic,loginStatus,logout} from "@/auth/magic/magic";
+import EmailDisplay from "@/components/auth/display/email"
 
 export default {
   name: 'DashHome',
   m:{},
-  components: {},
+  components: {
+    EmailDisplay
+  },
   data: function(){
     return {
 

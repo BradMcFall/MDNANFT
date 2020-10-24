@@ -17,7 +17,5 @@ export default {
 </script>
 
 <style>
-.login_container{
-  padding:2%;
-}
+/* */
 </style>

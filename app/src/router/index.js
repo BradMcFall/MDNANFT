@@ -26,8 +26,8 @@ const noAuth = (to,from,next) => {
                 })
             }
         })
-        next();
     }
+    next();
 }
 
 const auth = (to,from,next) => {
