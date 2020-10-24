@@ -1,11 +1,10 @@
 <template>
   <MainLayout>
 
-    <div id="magicApp" v-if="this.$store.state.magicLoggedInStatus === false
-    && this.loaded === 'Loading...'">{{this.loaded}}</div>
-
-    <div id="magicApp" v-if="this.$store.state.magicLoggedInStatus === false
-    && this.loaded === 'Ready'">
+    <div v-if="!this.loaded">
+      <SmallSpinner/>
+    </div>
+    <div id="magicApp" v-else>
       <MagicForm/>
     </div>
 
@@ -13,19 +12,21 @@
 </template>
 <script>
 
-import MainLayout from "@/layouts/mainLayout";
-import MagicForm from "@/components/magic/form";
+import MainLayout from '@/layouts/mainLayout'
+import MagicForm from '@/components/magic/form'
+import SmallSpinner from '@/components/ui/smallSpinner'
 import {getMagic,loginStatus} from "@/auth/magic/magic";
 
 export default {
   name: 'MagicLogin',
   components: {
     MainLayout,
-    MagicForm
+    MagicForm,
+    SmallSpinner
   },
   data: function () {
     return {
-      loaded: 'Loading...',
+      loaded: false,
       protectedURL:'/dash',
       m:{},
       loginStatus:false
@@ -52,7 +53,7 @@ export default {
       loginStatus(this.m).then((status)=> {
         if (!status) {
           this.m.preload().then(() => {
-            this.loaded = 'Ready';
+            this.loaded = true
             this.login();
           })
         }else{
@@ -72,7 +73,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #magicApp {
   margin: 20px auto 0;
   background-color: #eee;

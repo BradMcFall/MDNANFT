@@ -7,18 +7,21 @@
         <li><router-link to="/dash">dash</router-link></li>
       </ul>
     </nav>
-    <span v-if="this.$store.state.magicLoggedInStatus">
-      {{this.$store.state.loginEmail}} | <a href="/logout">logout</a>
-    </span>
+    <div class="logout_container">
+      <EmailDisplay />
+    </div>
   </header>
 </template>
 
 <script>
-import {getMagic,loginStatus,logout} from "@/auth/magic/magic";
+import {getMagic,loginStatus,logout} from "@/auth/magic/magic"
+import EmailDisplay from "@/components/auth/display/email"
 export default {
   name: 'Home',
   m:{},
-  components: {},
+  components: {
+    EmailDisplay
+  },
   data: function(){
     return {
     }

@@ -51,3 +51,15 @@ header span{
     background-color: #999;
     text-align:center;
 }
+.logout_container{
+    display:flex;
+    min-width:max-content;
+    position:relative;
+    float:right;
+}
+
+li {
+    display: inline-block;
+    padding-right: 10px;
+    font-weight: bold;
+}

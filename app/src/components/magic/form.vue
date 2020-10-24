@@ -17,3 +17,16 @@ export default {
   }
 }
 </script>
+<style scoped>
+h1 {
+  margin: 0;
+  padding-bottom: 12px;
+  font-size: 9px;
+}
+input,
+button {
+  padding: 4px;
+  font-size: 8px;
+  margin-bottom: 4px;
+}
+</style>
