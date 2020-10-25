@@ -5,6 +5,7 @@
 </template>
 <script>
 import DashLayout from "@/layouts/dashLayout";
+import {getApi} from "@/service/api";
 export default {
   name: 'DashHome',
   components: {
@@ -15,8 +16,27 @@ export default {
       test: []
     }
   },
-  methods: {},
-  beforeMount () {}
+  methods: {
+    createUser() {
+      getApi(
+          '/ext/keystore',
+          'keystore.createUser',
+          [
+            {
+              'username':'usertest2',
+              'password':'Yx88x888(%44x%%%'
+            }
+          ]
+      ).then(res => {
+        console.log('api: Health');
+        console.log('method: health.getLiveness');
+        console.log(JSON.stringify(res));
+      })
+    }
+  },
+  beforeMount () {
+    this.createUser();
+  }
 }
 </script>
 

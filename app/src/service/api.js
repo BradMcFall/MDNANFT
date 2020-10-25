@@ -12,7 +12,7 @@ export async function getApi(endPoint,method,params) {
             })
     };
 
-    const res = await fetch('/api/data', options);
+    const res = await fetch('/api/user/create', options);
     return await res.json();
 
 }
