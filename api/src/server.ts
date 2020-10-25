@@ -1,49 +1,70 @@
 import express from "express";
-import {AvalancheWork} from "./AvalancheWork"
 import {ApiService} from "./ApiService";
+import {User} from "./User";
 
 const app = express();
 const port = 3000;
 
-const user = new Map(); // "db -email is key"
+const user = new Map();
 
-const blockchainId = process.env.DEV_BLOCKCHAIN_ID;
 const blockchainIp = process.env.DEV_AVALANCHE_IP;
-
-const AVA = AvalancheWork.create({id:blockchainId,ip:blockchainIp});
 const API = ApiService.create({avalancheNodeUrl:blockchainIp,jsonRPCVersion:"2.0"});
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.post('/api/data', (req, res) => {
+app.post('/api/user/create', (req, res) => {
+
+    /* from the quickstart guide */
+    /* https://docs.avax.network/v1.0/en/quickstart/#create-a-keystore-user */
 
     let endPoint = req.body.endPoint;
     let method = req.body.method;
     let params = req.body.params;
 
-    API.getData(endPoint,method,params)
-        .then((r)=>{
-        res.json(r.data);
-    }).catch((err)=>{
-        console.log(err);
-    })
-});
+    console.log('method: ' + method);
 
-app.post('/api/user/create', (req, res) => {
-    let email = req.body.email;
-    AVA.createNewUser(email)
-        .then((r)=>{
-            user.set(email,r);
-            res.json(r);
+    if(method === 'keystore.createUser') {
+
+        /* check if bootstrapped */
+        API.getData(endPoint,'info.isBootstrapped',params)
+            .then((r)=>{
+
+                if(r.data){//true: bootstrapped
+
+                    //create user
+                    API.getData(endPoint,method,params)
+                        .then((r)=>{
+                            /*
+                            responses...
+                            { code: -32000, message: 'password is too weak', data: null }
+                            { code: -32000, message: 'user already exists: usertest1', data: null }
+                            {"jsonrpc":"2.0","result":{"success":true},"id":1}
+                            */
+                            if(r.data.error){
+                                console.log(r.data.error);
+                            }else{
+                                console.log('USER CREATED: ' + JSON.stringify(r.data));
+                                user.set('brad@bradcom.com', User.create({username:'test',password:'test'}))
+                                console.log(JSON.stringify(user.get('brad@bradcom.com')))
+
+                                    //next //--> add address
+                            }
+
+                        }).catch((err)=>{
+                        console.log(err);
+                    })
+                }
+
+            }).catch((err)=>{
+            console.log(err);
         })
-});
-//api/user/get
-//api/user/update
 
-//api/nft/create
-//api/nft/update
-//api/nft/get
+    }else{
+        res.json({'error':'not valid method'})
+    }
+});
+
 
 
 app.listen(port, () => {
