@@ -13,6 +13,7 @@ const API = ApiService.create({avalancheNodeUrl:blockchainIp,jsonRPCVersion:"2.0
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
 app.post('/api/user/create', (req, res) => {
 
     /* from the quickstart guide */
@@ -22,38 +23,36 @@ app.post('/api/user/create', (req, res) => {
     let method = req.body.method;
     let params = req.body.params;
 
-    console.log('method: ' + method);
-
     if(method === 'keystore.createUser') {
 
         /* check if bootstrapped */
-        API.getData(endPoint,'info.isBootstrapped',params)
+        API.getData('/ext/info',
+            'info.isBootstrapped',{"chain":"X"})
             .then((r)=>{
 
-                if(r.data){//true: bootstrapped
-
+                if(r.data.result.isBootstrapped){//true: bootstrapped
                     //create user
                     API.getData(endPoint,method,params)
                         .then((r)=>{
-                            /*
-                            responses...
-                            { code: -32000, message: 'password is too weak', data: null }
-                            { code: -32000, message: 'user already exists: usertest1', data: null }
-                            {"jsonrpc":"2.0","result":{"success":true},"id":1}
-                            */
+
                             if(r.data.error){
                                 console.log(r.data.error);
+                                res.json(r.data.error);
                             }else{
-                                console.log('USER CREATED: ' + JSON.stringify(r.data));
-                                user.set('brad@bradcom.com', User.create({username:'test',password:'test'}))
-                                console.log(JSON.stringify(user.get('brad@bradcom.com')))
-
-                                    //next //--> add address
+                                user.set(params.username, User.create({username:params.username, password:params.password}))
+                                console.log('\nuser created:\n' +
+                                    JSON.stringify(user.get(params.username)));
+                                console.log('\nusers in map: ' + user.size);
+                                    //next //--> add address ???
+                                res.json(r.data);
                             }
 
                         }).catch((err)=>{
-                        console.log(err);
+                            res.json(err);
+                            console.log(err);
                     })
+                }else{
+                    res.json({'error':'not bootstrapped'})
                 }
 
             }).catch((err)=>{
@@ -66,7 +65,27 @@ app.post('/api/user/create', (req, res) => {
 });
 
 
+/* for Brad:
+function testAPI() {
 
+    let endPoint = '/ext/health';
+    let method = 'health.getLiveness';
+    let params = [];
+    //no params needed for health, other endpoints require params
+    //if so it would be params = [{ <params> }]
+
+    API.getData(endPoint, method, params)
+        .then((response) => {
+
+            console.log(response); //entire response
+            console.log('\ni.e. data: ' + JSON.stringify(response.data));
+
+        }).catch((err)=>{
+            console.log(err);
+    })
+}
+*/
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
+    //testAPI();
 });
