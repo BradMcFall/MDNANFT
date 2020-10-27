@@ -7,7 +7,8 @@ const port = 3000;
 
 const user = new Map();
 
-const blockchainIp = process.env.DEV_AVALANCHE_IP;
+const blockchainIp = '127.0.0.1';
+//const blockchainIp = process.env.DEV_AVALANCHE_IP;
 const API = ApiService.create({avalancheNodeUrl:blockchainIp,jsonRPCVersion:"2.0"});
 
 app.use(express.urlencoded({ extended: true }));
@@ -65,10 +66,10 @@ app.post('/api/user/create', (req, res) => {
 });
 
 
-/* for Brad:
+// for Brad:
 function testAPI() {
-
-    let endPoint = '/ext/health';
+    //  let endPoint
+   let endPoint = '/ext/health';
     let method = 'health.getLiveness';
     let params = [];
     //no params needed for health, other endpoints require params
@@ -76,7 +77,7 @@ function testAPI() {
 
     API.getData(endPoint, method, params)
         .then((response) => {
-
+            
             console.log(response); //entire response
             console.log('\ni.e. data: ' + JSON.stringify(response.data));
 
@@ -84,8 +85,9 @@ function testAPI() {
             console.log(err);
     })
 }
-*/
+//
+
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
-    //testAPI();
+    testAPI();
 });
