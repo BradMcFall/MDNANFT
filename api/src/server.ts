@@ -66,7 +66,7 @@ app.post('/api/user/create', (req, res) => {
 });
 
 
-// for Brad:
+/* for Brad:
 function testAPI() {
     //  let endPoint
    let endPoint = '/ext/health';
@@ -85,9 +85,9 @@ function testAPI() {
             console.log(err);
     })
 }
-//
+*/
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
-    testAPI();
+  //  testAPI();
 });
