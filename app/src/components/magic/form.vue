@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Please sign up or login</h1>
+    <h1>Please enter your magic email address</h1>
     <form @submit="checkForm">
       <input type="email" name="email" required="required"
              placeholder="Enter your email" />

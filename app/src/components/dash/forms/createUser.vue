@@ -1,6 +1,6 @@
 <template>
     <div class="userForm">
-      <h3>Create Node User</h3>
+      <h3>Please enter an Avalancheavax platform user name and password. This will estasblish your wallet address.</h3>
     <form @submit="checkForm">
       <ul>
         <li>
@@ -23,7 +23,8 @@ export default {
   name:'createUser',
   data: function() {
     return {
-      username: this.$store.state.loginEmail,
+//      username: this.$store.state.loginEmail,// do not want to use actual email as network user name
+      username: '',
       password: '',
     }
   },

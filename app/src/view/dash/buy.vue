@@ -1,6 +1,6 @@
 <template>
   <DashLayout>
-    <div class="content">buy</div>
+    <div class="content">Buyer, click those seller mutations you would like to purchase</div>
   </DashLayout>
 </template>
 <script>
