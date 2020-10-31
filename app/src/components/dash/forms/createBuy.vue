@@ -1,21 +1,14 @@
 <template>
-    <div class="userForm">
-      <h3>Please enter a password and username to associate with your MDNANFT wallet.</h3>
-    <form @submit="checkForm">
-      <ul>
-        <li>
-      <input type="text" v-model="username" required="required"
-             placeholder="username" />
+    <div class="buyForm">
+    <div class="content"><b>If you would like to purchase a DNA mutation select and submit.</b></div>
+<select multiple>
+  <option>Mut1</option>
+  <option>Mut2</option>
+  <option>Mut3</option><br>
+</select> 
+ <li>
+      <button type="submit">Submit purchase</button>
         </li>
-        <li>
-      <input type="text" v-model="password" required="required"
-             placeholder="password" />
-        </li>
-        <li>
-      <button type="submit">Create User</button>
-        </li>
-      </ul>
-    </form>
     </div>
 </template>
 <script>
@@ -40,7 +33,6 @@ export default {
 </script>
 <style scoped>
 .userForm{
-
 }
 .userForm ul li{
   display:block;
@@ -50,3 +42,4 @@ button{
   padding:3px;
 }
 </style>
+

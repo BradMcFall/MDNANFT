@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>MDNANFT</h1>
+    <h1>MoneyDance DNA NFT Dapp demonstration</h1>
     <nav>
       <ul>
         <li><router-link to="/">home</router-link></li>
@@ -14,13 +14,14 @@
 </template>
 
 <script>
-import {getMagic,loginStatus,logout} from "@/auth/magic/magic"
-import EmailDisplay from "@/components/auth/display/email"
+import {getMagic,loginStatus,logout} from "@/auth/magic/magic";
+import EmailDisplay from "@/components/auth/display/email";
+//import Logoocd from "@/assets/logoocd";
 export default {
   name: 'Home',
   m:{},
   components: {
-    EmailDisplay
+    EmailDisplay,
   },
   data: function(){
     return {

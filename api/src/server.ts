@@ -1,3 +1,4 @@
+  
 import express from "express";
 import {ApiService} from "./ApiService";
 import {User} from "./User";
@@ -74,13 +75,11 @@ function testAPI() {
     let params = [];
     //no params needed for health, other endpoints require params
     //if so it would be params = [{ <params> }]
-
     API.getData(endPoint, method, params)
         .then((response) => {
             
             console.log(response); //entire response
             console.log('\ni.e. data: ' + JSON.stringify(response.data));
-
         }).catch((err)=>{
             console.log(err);
     })
@@ -89,5 +88,5 @@ function testAPI() {
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
-  //  testAPI();
+  //  
 });

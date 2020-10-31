@@ -1,46 +1,50 @@
 <template>
   <DashLayout>
-      <div class="content">
-Your DNA sequence indicates that you have three mutations that are associated with Hyper Caridomyopathy. If you would like to sell your mutation sequence data to researchers please check the appropriate box below and submit.
-   <form>
- <ul>
-    <li>
-  <input type="checkbox" id="gene1" name="gene1" value="betaMHC">
-  <label for="gene1"> betaMHC </label>
-    </li>
-   <li>
-<input type="checkbox" id="gene2" name="gene2" value="cTNT">
-  <label for="gene3"> cTNT </label>
-   </li>
-<li>
-  <input type="checkbox" id="gene3" name="gene3" value="MyBPC">
-  <label for="vehicle3"> MyBPC </label>
- </li>
-     <li>
- <button type="submit">Sell Mutation</button>
-        </li>
-</ul>
-</form>
-</div>
+    <div class="content">
+      <CreateSellForm/>
+    </div>
   </DashLayout>
 </template>
 <script>
-//import CreateSellerForm from "@/components/seller/forms/sellDNA"
-//import CreateUserForm from "@/components/dash/form/createUser"
+import CreateSellForm from "@/components/dash/forms/createSell";
 import DashLayout from "@/layouts/dashLayout";
+import {getApi} from "@/service/api";
 export default {
-  name: 'Sell',
+  name: 'DashHome',
   components: {
     DashLayout,
-   // CreateSellerForm
-//   CreateUserForm
+    CreateSellForm,
   },
   data() {
     return {
       test: []
     }
   },
-  methods: {},
+  methods: {
+    handleCreateUser(username,password){
+      this.createUser(username,password);
+    },
+    createUser(username,password) {
+      getApi(
+          '/ext/keystore',
+          'keystore.createUser',
+            {
+              'username':username,
+              'password': password
+            }
+      ).then(res => {
+        if(res.result !== undefined) {
+          if (!res.result.success) {
+            alert('ERROR TRY AGAIN: \n' + JSON.stringify(res));
+          } else {
+           alert('Successfully added User');
+          }
+        }else{
+          alert('ERROR TRY AGAIN: \n' + JSON.stringify(res));
+        }
+      })
+    }
+  },
   beforeMount () {}
 }
 </script>

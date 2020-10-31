@@ -1,3 +1,5 @@
+
+
 export async function getApi(endPoint,method,params) {
 
     const options = {
@@ -13,6 +15,7 @@ export async function getApi(endPoint,method,params) {
     };
 
     const res = await fetch('/api/user/create', options);
+
     return await res.json();
 
 }

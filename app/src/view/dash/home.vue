@@ -6,14 +6,14 @@
   </DashLayout>
 </template>
 <script>
-import CreateUserForm from "@/components/dash/forms/createUser"
+import CreateUserForm from "@/components/dash/forms/createUser";
 import DashLayout from "@/layouts/dashLayout";
 import {getApi} from "@/service/api";
 export default {
   name: 'DashHome',
   components: {
     DashLayout,
-    CreateUserForm
+    CreateUserForm,
   },
   data() {
     return {

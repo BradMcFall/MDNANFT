@@ -6,9 +6,9 @@
       <nav>
         <ul>
           <li><router-link to="/dash">dash</router-link></li>
-          <li><router-link to="/dash/marketplace">market</router-link></li>
+          <li><router-link to="/dash/sell">sell</router-link></li>          
           <li><router-link to="/dash/buy">buy</router-link></li>
-          <li><router-link to="/dash/sell">sell</router-link></li>
+          <li><router-link to="/dash/marketplace">market</router-link></li>
         </ul>
       </nav>
       <aside>
